@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>智慧AI助农系统</title>
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Custom Theme files -->
+<link href="../static/html_crop/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="../static/html_crop/css/style.css" type="text/css" rel="stylesheet" media="all">
+<link rel="stylesheet" href="css/swipebox.css">
+<!-- js -->
+<script src="../static/html_crop/js/jquery-1.11.1.min.js"></script>
+<!-- //js -->
+</head>
+<body>
+	<!--top-navigation-->
+	<div class="top-nav">
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				</button>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="hvr-bounce-to-bottom active"><a href="#">主页</a></li>
+						<li class="hvr-bounce-to-bottom"><a href="/pestClassify/">病虫害识别</a></li>
+
+						<li class="hvr-bounce-to-bottom"><a href="/productRecycle/">农产品回收</a></li>
+						<li class="hvr-bounce-to-bottom"><a href="/govNotice/">政府通知</a></li>
+						<li class="hvr-bounce-to-bottom"><a href="/govHelp/">政府帮扶</a></li>
+						<li class="hvr-bounce-to-bottom"><a href="/ViewIssuesReplyAll/">问题回复</a></li>
+						<li class="hvr-bounce-to-bottom"><a href="/login/">管理员登录</a></li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+	</div>
+	<!--//top-navigation-->
+	<!--banner-->
+	<div class="banner">
+		<!--header-->
+		<div class="header">
+			<div class="container">
+				<div class="header-left">
+					<h1>乡村振兴</h1>
+					<h1>科技强农</h1>
+				</div>
+				<div class="header-right">
+<!--					<ul>-->
+<!--						<li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></li>-->
+<!--						<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href=""></a></li>-->
+<!--					</ul>-->
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<div class="banner-text">
+			<!-- banner Slider starts Here -->
+			<script src="../static/html_crop/js/responsiveslides.min.js"></script>
+			<script>
+
+					$(function () {
+						$("#slider3").responsiveSlides({
+						auto: false,
+						pager:true,
+						nav:true,
+						speed: 500,
+						namespace: "callbacks",
+						before: function () {
+						$('.events').append("<li>before event fired.</li>");
+						},
+						after: function () {
+							$('.events').append("<li>after event fired.</li>");
+						}
+					});
+				});
+			</script>
+			<!--//End-slider-script -->
+			<div  id="top" class="callbacks_container">
+				<ul class="rslides" id="slider3">
+				    <li>
+						<h2>智慧AI助农平台</h2>
+						<h3>助农发展，以农为本</h3>
+						<p>智慧科技助力农业，精准防治、绿色回收、政策支持，开启您的高效农业新篇章！</p>
+					</li>
+					<li>
+						<h2>病虫害识别</h2>
+						<h3>告别盲目防治，迎接智能保障</h3>
+						<p>用精准病虫害识别，守护每一寸农田，助力丰收每一季</p>
+						<a class="more btn-1b"  href="/pestClassify/" >识别一下</a>
+					</li>
+					<li>
+						<h2>农产品回收</h2>
+						<h3>绿色回收，从源头开始</h3>
+						<p>高效处理废弃农产品，提升资源利用，助力可持续农业</p>
+						<a href="/productRecycle/" class="more btn-1b scroll" data-toggle="modal">申报废弃物</a>
+					</li>
+					<li>
+						<h2>政府通知</h2>
+						<h3>政策直达，决策无忧</h3>
+						<p>及时获取政府公告，让每一步农业管理更清晰、更有力</p>
+						<a href="/govNotice/" class="more btn-1b scroll" data-toggle="modal" >阅读更多</a>
+					</li>
+					<li>
+						<h2>政府帮扶</h2>
+						<h3>政府关怀，支持无微不至</h3>
+						<p>用爱心与政策帮扶，帮助农民解决问题，助力农业腾飞！</p>
+						<a href="/govHelp/" class="more btn-1b scroll" data-toggle="modal" >我要填写</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--footer-->
+	<div class="footer">
+		<div class="container">
+			<p>© 2024 HUBT . All rights reserved</p>
+		</div>
+	</div>
+	<!--//footer-->
+    <script src="../static/html_crop/js/bootstrap.js"></script>
+</body>
+</html>
