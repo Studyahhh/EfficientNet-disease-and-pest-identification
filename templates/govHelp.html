@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧助农系统</title>
+    <link href="../static/html_crop/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="../static/html_crop/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <script src="../static/html_crop/js/jquery-1.11.1.min.js"></script>
+    <script src="../static/html_crop/js/bootstrap.js"></script>
+    <style>
+        /* Flash 消息样式 */
+        .flash-message {
+            position: fixed;
+            top: 50%; /* 垂直居中 */
+            left: 50%; /* 水平居中 */
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display: none; /* 初始状态隐藏 */
+            opacity: 0; /* 初始透明度 */
+            z-index: 9999; /* 确保在顶层显示 */
+            transition: opacity 0.3s ease-in-out; /* 淡入淡出过渡效果 */
+        }
+    </style>
+</head>
+<body>
+    <div class="flash-message" id="flash-message"></div>
+
+    <div class="top-nav">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu
+                </button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="hvr-bounce-to-bottom"><a href="../">主页</a></li>
+                        <li class="hvr-bounce-to-bottom"><a href="/pestClassify/">病虫害识别</a></li>
+
+                        <li class="hvr-bounce-to-bottom"><a href="/productRecycle/">农产品回收</a></li>
+                        <li class="hvr-bounce-to-bottom"><a href="/govNotice/">政府通知</a></li>
+                        <li class="hvr-bounce-to-bottom active"><a href="#">政府帮扶</a></li>
+                        <li class="hvr-bounce-to-bottom"><a href="/ViewIssuesReplyAll/">问题回复</a></li>
+                        <li class="hvr-bounce-to-bottom"><a href="/login/">管理员登录</a></li>
+                    </ul>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="contact" id="contact">
+        <div class="container">
+            <h3 class="title">提交问题</h3>
+            <div class="contact-grids">
+                <div class="col-md-4 address">
+                    <h4>通讯地址</h4>
+                    <p class="cnt-p">北京市朝阳区农展馆南里11号 </p>
+                    <br>
+                    <h4>接访地址</h4>
+                    <p>北京市西城区西四敬胜胡同甲3号</p>
+                    <p>电话:（010）66179655</p>
+                    <p>邮 编：100125</p>
+                    <p>Email : <a href="https://www.gov.cn/hudong/index.htm">content@mail.gov.cn</a></p>
+                </div>
+                <div class="col-md-7 contact-form">
+                    <form id="issuesForm">
+                        <input type="text" name="name" placeholder="姓名" required="">
+                        <input class="email" type="text" name="phone" placeholder="电话" required="">
+                        <input type="text" name="title" placeholder="问题标题" required="" style="width: 100%; padding: 10px;">
+                        <textarea placeholder="请输入问题详情..." name="description" required=""></textarea>
+                        <input type="submit" value="提交">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('issuesForm');
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault(); // 阻止默认表单提交行为
+
+                    var formData = new FormData(form);
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/govHelp/add_issues/', true);
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                var response = JSON.parse(xhr.responseText);
+                                if (response.success) {
+                                    showFlashMessage('问题已成功添加！', 'success');
+                                    setTimeout(function() {
+                                        window.location.href = '/govHelp'; // 延迟重定向
+                                    }, 1000); // 1 秒后重定向
+                                } else {
+                                    showFlashMessage('提交失败，请重试！', 'error');
+                                }
+                            } else {
+                                showFlashMessage('网络错误，请稍后再试！', 'error');
+                            }
+                        }
+                    };
+                    xhr.send(formData);
+                });
+            }
+
+            function showFlashMessage(message, type) {
+                var flashMessage = document.getElementById('flash-message');
+                if (flashMessage) {
+                    flashMessage.textContent = message;
+                    flashMessage.className = 'flash-message ' + type;
+                    flashMessage.style.display = 'block';
+                    setTimeout(function() {
+                        flashMessage.style.opacity = '1';
+                    }, 10);
+                    setTimeout(function() {
+                        flashMessage.style.opacity = '0';
+                        setTimeout(function() {
+                            flashMessage.style.display = 'none';
+                        }, 300);
+                    }, 3000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

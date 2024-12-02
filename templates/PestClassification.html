@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>智慧助农系统</title>
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Custom Theme files -->
+<link href="../static/html_crop/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="../static/html_crop/css/style.css" type="text/css" rel="stylesheet" media="all">
+<link rel="stylesheet" href="css/swipebox.css">
+<!-- js -->
+<script src="../static/html_crop/js/jquery-1.11.1.min.js"></script>
+<!-- //js -->
+<!--web-fonts-->
+<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>
+<!--//web-fonts-->
+<!-- start-smooth-scrolling-->
+<script type="text/javascript" src="../static/html_crop/js/move-top.js"></script>
+<script type="text/javascript" src="../static/html_crop/js/easing.js"></script>
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+
+		$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+</script>
+<style>
+    #imagePreview {
+        margin-top: 10px;
+        position: relative;
+        text-align: center;
+    }
+    #imagePreview img {
+        width: 300px;
+        height: 180px;
+        object-fit: cover; /* 确保图片被裁剪以适应容器 */
+        display: block;
+        margin: 0 auto 10px;
+    }
+    #imagePreview button {
+        display: block;
+        margin: 10px auto 0;
+    }
+</style>
+
+</head>
+<body>
+	<!--top-navigation-->
+	<div class="top-nav">
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu
+				</button>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="hvr-bounce-to-bottom"><a href="../">主页</a></li>
+						<li class="hvr-bounce-to-bottom active"><a href="#">病虫害识别</a></li>
+
+						<li class="hvr-bounce-to-bottom"><a href="/productRecycle/">农产品回收</a></li>
+						<li class="hvr-bounce-to-bottom"><a href="/govNotice/">政府通知</a></li>
+						<li class="hvr-bounce-to-bottom"><a href="/govHelp/">政府帮扶</a></li>
+						<li class="hvr-bounce-to-bottom"><a href="/ViewIssuesReplyAll/">问题回复</a></li>
+						<li class="hvr-bounce-to-bottom"><a href="/login/">管理员登录</a></li>
+					</ul>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<!--//top-navigation-->
+
+	<!--banner-->
+	<div class="banner-classify">
+		<!--header-->
+		<div class="header">
+			<div class="container">
+				<div class="header-left">
+					<h1>乡村振兴</h1>
+					<h1>科技强农</h1>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner-text">
+			<div  id="top" class="callbacks_container">
+
+						<h2>病虫害识别</h2>
+						<h3>提前预防，合理用药，可持续发展</h3>
+						<p>运用了高效，高准确率的神经网络模型，可准确识别水稻，玉米，番茄等作物的病虫害</p>
+
+						<!-- 文件上传表单 -->
+						<form id="uploadForm">
+							<input style="display: none;" type="file" id="fileInput" name="file" accept="image/*" required>
+							<a class="more btn-1b scroll"  href="#" id="uploadButton">上传图片</a>
+							<a class="more btn-1b scroll"   href="#" id="classifyButton">识别图片</a>
+							<div id="imagePreview"></div>
+							<br>
+							<button type="submit" style="display: none;"></button>
+						</form>
+						<div id="result"></div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+<div id="loadingOverlay">
+    <div class="spinner-border text-primary" role="status">
+
+    </div>
+    <div class="loading-text">加载中，请稍候...</div>
+</div>
+
+
+	<!--footer-->
+	<div class="footer">
+		<div class="container">
+			<p>© 2024. All rights reserved</p>
+		</div>
+	</div>
+	<!--//footer-->
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="../static/html_crop/js/bootstrap.js"></script>
+<script>
+    document.getElementById('uploadButton').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('fileInput').click();
+    });
+
+    document.getElementById('fileInput').addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const previewContainer = document.getElementById('imagePreview');
+                const imageElement = document.createElement('img');
+                imageElement.src = e.target.result;
+                previewContainer.innerHTML = '';
+                previewContainer.appendChild(imageElement);
+
+                // 添加删除按钮
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-danger rounded-pill py-2 px-4';
+                deleteButton.textContent = '删除';
+                deleteButton.style.marginTop = '10px';
+                deleteButton.addEventListener('click', function() {
+                    previewContainer.innerHTML = ''; // 清空预览区域
+                    document.getElementById('fileInput').value = null; // 重置文件输入框
+                });
+                previewContainer.appendChild(deleteButton);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.getElementById('classifyButton').addEventListener('click', function(event) {
+        event.preventDefault();
+        const fileInput = document.getElementById('fileInput');
+        if (!fileInput.files.length) {
+            alert('请先选择要识别的图片！');
+            return;
+        }
+
+        // 显示加载中消息
+        document.getElementById('loadingOverlay').style.display = 'flex';
+
+        // 准备表单数据
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+
+        // 发送识别请求
+        fetch('/classify', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.redirect_url && data.result) {
+                const resultUrl = `${data.redirect_url}?result=${encodeURIComponent(JSON.stringify(data.result))}`;
+                window.location.href = resultUrl;
+            } else {
+                console.error('Error: Missing redirect_url or result in response');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            // 隐藏加载中消息
+            document.getElementById('loadingOverlay').style.display = 'none';
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

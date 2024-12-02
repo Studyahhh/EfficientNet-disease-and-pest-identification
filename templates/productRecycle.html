@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧助农系统</title>
+
+    <!-- Custom Theme files -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- CSS -->
+    <link href="../static/html_crop/css/bootstrap.css" rel="stylesheet" media="all">
+    <link href="../static/html_crop/css/style.css" rel="stylesheet" media="all">
+
+<style>
+    .delete-button {
+        background-color: #ff0000 !important; /* 应用红色背景 */
+    }
+</style>
+
+<style>
+body {
+    font-family: 'Arial', sans-serif !important;
+}
+
+main {
+    padding: 20px 0;
+}
+
+.container-recycle {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2%;
+}
+
+.sidebar {
+    margin-top: 10px;
+    width: 20%;
+    background-color: #fbfbfb;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2, .sidebar h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.sidebar h2 {
+    margin-top: 30px;
+}
+
+.survey-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.survey-form label {
+    margin-top: 10px;
+}
+
+.survey-form input, .survey-form textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.survey-form button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.survey-form button:hover {
+    background-color: #218838;
+}
+
+.product-container {
+    width: 75%;
+    min-height: 700px;
+    padding: 0px; /* 为了避免内容贴边 */
+}
+
+.product-container h2 {
+    text-align: center;
+    margin-bottom: 20px; /* 为标题添加底部间距 */
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 15px;
+    text-align: center;
+    width: calc(20% - 20px); /* 留出间距 */
+    box-sizing: border-box;
+}
+.product h4 {
+    margin-top: 10px;  /* 上方间距 */
+    margin-bottom: 10px; /* 下方间距 */
+    font-size: 16px; /* 调整字体大小，根据需要修改 */
+    color: #333; /* 设置字体颜色 */
+}
+
+.product img {
+    width: 100%;
+    height: 180px; /* 设置固定高度 */
+    object-fit: cover; /* 确保图片填充容器且保持比例 */
+    border-radius: 2px; /* 保持圆角效果 */
+}
+
+.product button {
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+    padding: 10px 25px; /* 增加左右内边距，使按钮更宽 */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* 为按钮添加顶部间距 */
+}
+
+.product button:hover {
+    background-color: #218838;
+}
+
+
+.image-preview {
+    overflow: hidden; /* 隐藏超出容器部分 */
+    position: relative;
+    margin-top: 10px;
+}
+
+.image-preview img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.delete-button {
+    position: absolute;
+    top: 1px;
+    right: 10px;
+    background-color: #ff0000; /* 红色背景 */
+    color: #fff; /* 白色文字 */
+    border: none;
+    border-radius: 50%; /* 圆形按钮 */
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 10;
+}
+
+.delete-button:hover {
+    background-color: #FF5733; /* 悬停时颜色 */
+}
+
+.goods-detail {
+    background-color: #007bff; /* 蓝色背景 */
+    color: #fff; /* 白色文字 */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+    display: block; /* 使其为块级元素 */
+}
+
+.goods-detail:hover {
+    background-color: #0056b3; /* 悬停时变暗 */
+}
+
+.goods-detail a {
+    color: #fff; /* 确保链接文字为白色 */
+    text-decoration: none; /* 移除下划线 */
+}
+</style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    Menu
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="hvr-bounce-to-bottom"><a href="../">主页</a></li>
+                        <li class="hvr-bounce-to-bottom"><a href="/pestClassify/">病虫害识别</a></li>
+
+                        <li class="hvr-bounce-to-bottom active"><a href="#">农产品回收</a></li>
+                        <li class="hvr-bounce-to-bottom"><a href="/govNotice/">政府通知</a></li>
+                        <li class="hvr-bounce-to-bottom"><a href="/govHelp/">政府帮扶</a></li>
+                        <li class="hvr-bounce-to-bottom"><a href="/ViewIssuesReplyAll/">问题回复</a></li>
+                        <li class="hvr-bounce-to-bottom"><a href="/login/">管理员登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- End Top Navigation -->
+
+    <main>
+        <div class="container-recycle">
+            <aside class="sidebar">
+                <h2 align="center">回收废弃物的好处</h2>
+                <h4>1. 减少土壤和水体污染。</h4>
+                <h4>2. 减少有害气体的产生。</h4>
+                <h4>3. 改善土壤，提升产量。</h4>
+                <h4>4. 响应可持续发展战略。</h4>
+                <h4>5. 降低碳足迹，推动低碳农业。</h4>
+                <h4>6. 废弃农作物出售，增加收入。</h4>
+                <hr>
+                <h2 align="center">废弃农产品申报</h2>
+                <form class="survey-form" action="{{ url_for('add_recycled_item') }}" method="POST" enctype="multipart/form-data">
+                    <label for="name">姓名：</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="phone">电话：</label>
+                    <input type="text" id="phone" name="phone" required>
+                    <label for="item_name">回收物名称：</label>
+                    <input type="text" id="item_name" name="item_name" required>
+                    <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;" required>
+                    <button type="button" id="uploadButton">上传图片</button>
+                    <div id="imagePreview" class="image-preview"></div>
+
+                    <label for="introduction">介绍：</label>
+                    <textarea id="introduction" name="introduction" rows="5" required></textarea>
+
+                    <button type="submit">提交</button>
+                </form>
+            </aside>
+            <section class="product-container">
+
+                <h2>废物循环利用，共建绿色农村</h2>
+                <hr>
+                <div class="product-grid">
+                    {% if displayitems %}
+                        {% for item in displayitems %}
+                            <article class="product">
+                                <h4 style="color: #2f5cf2; font-weight: bold; ">名称：{{ item.item_name }}</h4>
+                                <img src="../{{ item.image_url}}" alt="{{ item.name }}">
+                                <h4>联系人：{{ item.name }}</h4>
+                                <h4>联系电话：{{ item.phone }}</h4>
+                                <a href="{{ url_for('view_goods', goods_id=item.id) }}"><div class="goods-detail">详情</div></a>
+                            </article>
+                        {% endfor %}
+                    {% else %}
+                        <p class="no-products">暂时还没有商品上架</p>
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // 上传按钮点击事件
+        document.getElementById('uploadButton').addEventListener('click', function() {
+            document.getElementById('fileInput').click();
+        });
+
+        // 文件选择后显示预览
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imagePreview = document.getElementById('imagePreview');
+                    imagePreview.innerHTML = `
+                        <div class="image-container">
+                            <img src="${e.target.result}" alt="Image Preview">
+                            <button class="delete-button">&times;</button>
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 删除按钮点击事件
+        document.getElementById('imagePreview').addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete-button')) {
+                document.getElementById('imagePreview').innerHTML = ''; // 清除预览
+            }
+        });
+    </script>
+</body>
+</html>

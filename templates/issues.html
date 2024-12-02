@@ -1,0 +1,136 @@
+{% extends "admin.html" %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-add {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .btn-add:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .actions button {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            width: 80px; /* 设置固定宽度 */
+            text-align: center; /* 水平居中 */
+            box-sizing: border-box; /* 包括内边距和边框在内计算宽度 */
+        }
+
+        .actions button.edit {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .actions button.edit:hover {
+            background-color: #0056b3;
+        }
+
+        .actions button.delete {
+            background-color: #dc3545;
+            border: none;
+        }
+
+        .actions button.delete:hover {
+            background-color: #c82333;
+        }
+    </style>
+    <h1>问题管理</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>标题</th>
+                <th>联系方式</th>
+                <th>描述</th>
+                <th>创建时间</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for issue in issues %}
+                <tr>
+                    <td>{{ issue.name }}</td>
+                    <td>{{ issue.title }}</td>
+                    <td>{{ issue.phone }}</td>
+                    <td>
+                        {{ issue.description[:n] }}{% if issue.description|length > n %}...{% endif %}
+
+                    </td>
+                    <td>{{ issue.created_at }}</td>
+                    <td>{{ '已回复' if issue.reply else '未回复' }}</td>
+                    <td class="actions">
+                        <form action="{{ url_for('reply_issues', id=issue.id) }}" style="display:inline;">
+                            <button type="submit" class="edit">编辑</button>
+                        </form>
+                        <form action="{{  url_for('delete_issue', id=issue.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="delete" onclick="return confirm('确定删除吗？')">删除</button>
+                        </form>
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
