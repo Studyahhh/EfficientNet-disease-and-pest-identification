@@ -14,6 +14,6 @@
 1. 确保你已经安装了 [Python 3.10](https://www.python.org/downloads/)、[CUDA 11.8](https://developer.nvidia.com/cuda-toolkit)。
 
 ## 运行截图
-![运行截图](https://github.com/Studyahhh/EfficientNet-disease-and-pest-identification/blob/main/%E4%B8%BB%E9%A1%B5.jpg?raw=true)
+![运行截图](%E4%B8%BB%E9%A1%B5.jpg?raw=true)
 ![运行截图](classify.jpg?raw=true)
 
