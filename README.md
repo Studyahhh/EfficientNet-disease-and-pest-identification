@@ -14,5 +14,5 @@
 1. 确保你已经安装了 [Python 3.10](https://www.python.org/downloads/)、[CUDA 11.8](https://developer.nvidia.com/cuda-toolkit)。
 
 ## 运行截图
-![运行截图] (主页.jpg)
+(主页.jpg)
 
