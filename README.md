@@ -15,5 +15,5 @@
 
 ## 运行截图
 ![运行截图](https://github.com/Studyahhh/EfficientNet-disease-and-pest-identification/blob/main/%E4%B8%BB%E9%A1%B5.jpg?raw=true)
-![运行截图](https://github.com/Studyahhh/EfficientNet-disease-and-pest-identification/blob/main/classify.jpg?raw=true)
+![运行截图](classify.jpg?raw=true)
 
