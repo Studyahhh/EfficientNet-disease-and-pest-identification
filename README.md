@@ -13,6 +13,6 @@
 
 1. 确保你已经安装了 [Python 3.10](https://www.python.org/downloads/)、[CUDA 11.8](https://developer.nvidia.com/cuda-toolkit)。
 
-## 项目说明
-该项目是比赛项目，目前只上传了部分，后续比赛结束会全部上传
+## 运行截图
+![运行截图] (主页.jpg)
 
